@@ -1,0 +1,11 @@
+{
+  "name": "trz-backend",
+  "version": "1.0.0",
+  "description": "Backend for The Resident Zombie app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pedro Figueirêdo",
+  "license": "ISC"
+}
