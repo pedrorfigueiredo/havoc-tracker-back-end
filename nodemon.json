@@ -1,0 +1,7 @@
+{
+  "env": {
+    "DB_USER": "aknos",
+    "DB_PASSWORD": "cDuFHjQVVLdWsG5E",
+    "DB_NAME": "the-resident-zombie"
+  }
+}
