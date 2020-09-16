@@ -11,13 +11,15 @@ const peopleSchema = new Schema({
     lng: {type: Number, required: true, min: 0, max: 150}
   },
   inventory: {
-    fijiWater: {type: Number, required: true, max: 100},
-    campbellSoup: {type: Number, required: true, max: 100},
-    firstAidPouch: {type: Number, required: true, max: 100},
-    ak47: {type: Number, required: true, max: 100},
+    fijiWater: {type: Number, required: true, min: 0},
+    campbellSoup: {type: Number, required: true, min: 0},
+    firstAidPouch: {type: Number, required: true, min: 0},
+    ak47: {type: Number, required: true, min: 0},
   },
-  isInfected: {type: Boolean, require: true},
-  marks: {type: Number, required: true, min: 0}
+  isInfected: {type: Boolean, required: true},
+  flags: {type: Number, required: true, min: 0},
+  survivorsFlagged: [{type: String, required: true}],
+  infectedPoints: {type: Number}
 });
 
 module.exports = mongoose.model("People", peopleSchema);
