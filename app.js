@@ -32,9 +32,10 @@ mongoose
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
-    console.log("SERVER STARTED...");
-    app.listen(process.env.PORT || 5000);
+    console.log("DB CONNECTED...");
   })
   .catch((err) => {
     console.log(err);
   });
+
+module.exports = app;

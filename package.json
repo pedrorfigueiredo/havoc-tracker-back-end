@@ -2,10 +2,13 @@
   "name": "trz-backend",
   "version": "1.0.0",
   "description": "Backend for The Resident Zombie app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "author": "Pedro Figueirêdo",
   "license": "ISC",
@@ -14,5 +17,9 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.4"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "supertest": "^4.0.2"
   }
 }
