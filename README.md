@@ -1,10 +1,8 @@
-# The Resident Zombie - Backend
+# Havoc Tracker - Backend
 
 ## Introduction
 
-The Resident Zombie is a project for helping survivors in a Zombie Apocalypse. The backend is made in Node.js with Express.js. The database is built in MongoDB, with the help of Mongoose lib. This is a RESTful API server.
-
-Author: Pedro Ramalho Figueirêdo
+Havoc Tracker is a project for helping survivors in a Zombie Apocalypse. The backend is made in Node.js with Express.js. The database is built in MongoDB, with the help of Mongoose lib. This is a RESTful API server.
 
 ## Install
 
@@ -18,7 +16,7 @@ npm install
 npm start
 ```
 
-Now your Resident Zombie - Backend server is running!
+Now your Havoc Tracker - Backend server is running!
 
 ## Testing
 
@@ -39,10 +37,10 @@ body: {
   gender,
   lastLocationLat,
   lastLocationLng,
-  fijiWater,
-  campbellSoup,
-  firstAidPouch,
-  ak47
+  water,
+  food,
+  firstAid,
+  gun
 }
 ```
 
@@ -81,14 +79,14 @@ An infected cannot trade.
 ```js
 body: {
   id,
-  user1FijiWater,
-  user2FijiWater,
-  user1CampbellSoup,
-  user2CampbellSoup,
-  user1FirstAidPouch,
-  user2FirstAidPouch,
-  user1Ak47,
-  user2Ak47
+  user1water,
+  user2water,
+  user1food,
+  user2food,
+  user1firstAid,
+  user2firstAid,
+  user1gun,
+  user2gun
 }
 ```
 

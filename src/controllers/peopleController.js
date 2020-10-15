@@ -13,10 +13,10 @@ const create = async (req, res, next) => {
       lng: req.body.lastLocationLng,
     },
     inventory: {
-      fijiWater: req.body.fijiWater,
-      campbellSoup: req.body.campbellSoup,
-      firstAidPouch: req.body.firstAidPouch,
-      ak47: req.body.ak47,
+      water: req.body.water,
+      food: req.body.food,
+      firstAid: req.body.firstAid,
+      gun: req.body.gun,
     },
     isInfected: false,
     flags: 0,
@@ -138,20 +138,20 @@ const reportInfection = async (req, res, next) => {
 
     if (flags >= 5) {
       const infectedPoints =
-        infected.inventory.fijiWater * price.fijiWater +
-        infected.inventory.campbellSoup * price.campbellSoup +
-        infected.inventory.firstAidPouch * price.firstAidPouch +
-        infected.inventory.ak47 * price.ak47;
+        infected.inventory.water * price.water +
+        infected.inventory.food * price.food +
+        infected.inventory.firstAid * price.firstAid +
+        infected.inventory.gun * price.gun;
 
-      informer.inventory.fijiWater += infected.inventory.fijiWater;
-      informer.inventory.campbellSoup += infected.inventory.campbellSoup;
-      informer.inventory.firstAidPouch += infected.inventory.firstAidPouch;
-      informer.inventory.ak47 += infected.inventory.ak47;
+      informer.inventory.water += infected.inventory.water;
+      informer.inventory.food += infected.inventory.food;
+      informer.inventory.firstAid += infected.inventory.firstAid;
+      informer.inventory.gun += infected.inventory.gun;
 
-      infected.inventory.fijiWater = 0;
-      infected.inventory.campbellSoup = 0;
-      infected.inventory.firstAidPouch = 0;
-      infected.inventory.ak47 = 0;
+      infected.inventory.water = 0;
+      infected.inventory.food = 0;
+      infected.inventory.firstAid = 0;
+      infected.inventory.gun = 0;
 
       await People.findByIdAndUpdate(
         infected._id,

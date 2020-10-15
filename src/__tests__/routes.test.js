@@ -10,10 +10,10 @@ const testSurvivor1 = {
   gender: "male",
   lastLocationLat: 20,
   lastLocationLng: 15,
-  fijiWater: 10,
-  campbellSoup: 10,
-  firstAidPouch: 10,
-  ak47: 10,
+  water: 10,
+  food: 10,
+  firstAid: 10,
+  gun: 10,
 };
 
 const testSurvivor2 = {
@@ -22,10 +22,10 @@ const testSurvivor2 = {
   gender: "female",
   lastLocationLat: 17,
   lastLocationLng: 12,
-  fijiWater: 15,
-  campbellSoup: 15,
-  firstAidPouch: 15,
-  ak47: 15,
+  water: 15,
+  food: 15,
+  firstAid: 15,
+  gun: 15,
 };
 
 describe("API routes", () => {
@@ -83,7 +83,7 @@ describe("API routes", () => {
   });
 
   describe("PATCH /api/people/:id", () => {
-    const newLocation = { lastLocationLat: 44, lastLocationLng: 44 }
+    const newLocation = { lastLocationLat: 44, lastLocationLng: 44 };
 
     it("should succeed", async () => {
       const res = await request(app)
@@ -110,7 +110,7 @@ describe("API routes", () => {
 
       const res = await request(app)
         .post(`/api/people/${newSurvivor1._id}/report-infection`)
-        .send({infected: newSurvivor2.name});
+        .send({ infected: newSurvivor2.name });
       expect(res.statusCode).toBe(200);
     });
   });
@@ -124,15 +124,15 @@ describe("API routes", () => {
 
       const data = {
         id: newSurvivor1._id,
-        user1FijiWater: 3,
-        user2FijiWater: 3,
-        user1CampbellSoup: 0,
-        user2CampbellSoup: 0,
-        user1FirstAidPouch: 0,
-        user2FirstAidPouch: 0,
-        user1Ak47: 0,
-        user2Ak47: 0
-      }
+        user1water: 3,
+        user2water: 3,
+        user1food: 0,
+        user2food: 0,
+        user1firstAid: 0,
+        user2firstAid: 0,
+        user1gun: 0,
+        user2gun: 0,
+      };
 
       const res = await request(app)
         .post(`/api/people/${newSurvivor2._id}/properties/trade-item`)
@@ -143,86 +143,77 @@ describe("API routes", () => {
 
   describe("GET /api/people/:id/properties", () => {
     it("should succeed", async () => {
-      const res = await request(app)
-        .get(`/api/people/${newSurvivor1._id}/properties`)
+      const res = await request(app).get(
+        `/api/people/${newSurvivor1._id}/properties`
+      );
       expect(res.statusCode).toBe(200);
     });
 
-    it("response body should have ak47 property", async () => {
-      const res = await request(app)
-        .get(`/api/people/${newSurvivor1._id}/properties`)
-        expect(res.body).toHaveProperty("ak47");
+    it("response body should have gun property", async () => {
+      const res = await request(app).get(
+        `/api/people/${newSurvivor1._id}/properties`
+      );
+      expect(res.body).toHaveProperty("gun");
     });
   });
 
   describe("GET /api/report/infected", () => {
     it("should succeed", async () => {
-      const res = await request(app)
-        .get(`/api/report/infected`)
+      const res = await request(app).get(`/api/report/infected`);
       expect(res.statusCode).toBe(200);
     });
 
     it("response body should have infectedPercentage property", async () => {
-      const res = await request(app)
-        .get(`/api/report/infected`)
-        expect(res.body).toHaveProperty("infectedPercentage");
+      const res = await request(app).get(`/api/report/infected`);
+      expect(res.body).toHaveProperty("infectedPercentage");
     });
-
   });
 
   describe("GET /api/report/non-infected", () => {
     it("should succeed", async () => {
-      const res = await request(app)
-        .get(`/api/report/non-infected`)
+      const res = await request(app).get(`/api/report/non-infected`);
       expect(res.statusCode).toBe(200);
     });
 
     it("response body should have nonInfectedPercentage property", async () => {
-      const res = await request(app)
-        .get(`/api/report/non-infected`)
-        expect(res.body).toHaveProperty("nonInfectedPercentage");
+      const res = await request(app).get(`/api/report/non-infected`);
+      expect(res.body).toHaveProperty("nonInfectedPercentage");
     });
   });
 
   describe("GET /api/report/people-inventory", () => {
     it("should succeed", async () => {
-      const res = await request(app)
-        .get(`/api/report/people-inventory`)
+      const res = await request(app).get(`/api/report/people-inventory`);
       expect(res.statusCode).toBe(200);
     });
 
     it("response body should have averageItems property", async () => {
-      const res = await request(app)
-        .get(`/api/report/people-inventory`)
-        expect(res.body).toHaveProperty("averageItems");
+      const res = await request(app).get(`/api/report/people-inventory`);
+      expect(res.body).toHaveProperty("averageItems");
     });
   });
 
   describe("GET /api/report/infected-points", () => {
     it("should succeed", async () => {
-      const res = await request(app)
-        .get(`/api/report/infected-points`)
+      const res = await request(app).get(`/api/report/infected-points`);
       expect(res.statusCode).toBe(200);
     });
 
     it("response body should have infectedPoints property", async () => {
-      const res = await request(app)
-        .get(`/api/report/infected-points`)
-        expect(res.body).toHaveProperty("infectedPoints");
+      const res = await request(app).get(`/api/report/infected-points`);
+      expect(res.body).toHaveProperty("infectedPoints");
     });
   });
 
   describe("GET /api/report", () => {
     it("should succeed", async () => {
-      const res = await request(app)
-        .get(`/api/report`)
+      const res = await request(app).get(`/api/report`);
       expect(res.statusCode).toBe(200);
     });
 
     it("response body should have availableReports property", async () => {
-      const res = await request(app)
-        .get(`/api/report`)
-        expect(res.body).toHaveProperty("availableReports");
+      const res = await request(app).get(`/api/report`);
+      expect(res.body).toHaveProperty("availableReports");
     });
   });
-})
+});

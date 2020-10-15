@@ -1,8 +1,8 @@
 const price = {
-  fijiWater: 14,
-  campbellSoup: 12,
-  firstAidPouch: 10,
-  ak47: 8
+  water: 14,
+  food: 12,
+  firstAid: 10,
+  gun: 8,
 };
 
 module.exports = price;

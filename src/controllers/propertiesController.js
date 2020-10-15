@@ -3,7 +3,6 @@ const HttpError = require("../models/http-error");
 const mongoose = require("mongoose");
 
 const tradeItems = async (req, res, next) => {
-
   let user1;
   try {
     user1 = await People.findById(req.params.id);
@@ -27,19 +26,25 @@ const tradeItems = async (req, res, next) => {
   }
 
   const newUser1Inventory = {
-    fijiWater: user1.inventory.fijiWater - req.body.user1FijiWater + req.body.user2FijiWater,
-    campbellSoup: user1.inventory.campbellSoup - req.body.user1CampbellSoup + req.body.user2CampbellSoup,
-    firstAidPouch: user1.inventory.firstAidPouch - req.body.user1FirstAidPouch + req.body.user2FirstAidPouch,
-    ak47: user1.inventory.ak47 - req.body.user1Ak47 + req.body.user2Ak47,
-  }
+    water: user1.inventory.water - req.body.user1water + req.body.user2water,
+    food: user1.inventory.food - req.body.user1food + req.body.user2food,
+    firstAid:
+      user1.inventory.firstAid -
+      req.body.user1firstAid +
+      req.body.user2firstAid,
+    gun: user1.inventory.gun - req.body.user1gun + req.body.user2gun,
+  };
 
   const newUser2Inventory = {
-    fijiWater: user2.inventory.fijiWater - req.body.user2FijiWater + req.body.user1FijiWater,
-    campbellSoup: user2.inventory.campbellSoup - req.body.user2CampbellSoup + req.body.user1CampbellSoup,
-    firstAidPouch: user2.inventory.firstAidPouch - req.body.user2FirstAidPouch + req.body.user1FirstAidPouch,
-    ak47: user2.inventory.ak47 - req.body.user2Ak47 + req.body.user1Ak47,
-  }
-  
+    water: user2.inventory.water - req.body.user2water + req.body.user1water,
+    food: user2.inventory.food - req.body.user2food + req.body.user1food,
+    firstAid:
+      user2.inventory.firstAid -
+      req.body.user2firstAid +
+      req.body.user1firstAid,
+    gun: user2.inventory.gun - req.body.user2gun + req.body.user1gun,
+  };
+
   const sess = await mongoose.startSession();
   sess.startTransaction();
 
@@ -57,7 +62,7 @@ const tradeItems = async (req, res, next) => {
       500
     );
     return next(error);
-  };
+  }
 
   //Updating user 2
   try {
@@ -73,10 +78,10 @@ const tradeItems = async (req, res, next) => {
       500
     );
     return next(error);
-  };
+  }
   await sess.commitTransaction();
 
-  res.json({message: "Trade successful."});
+  res.json({ message: "Trade successful." });
 };
 
 const getAllItems = async (req, res, next) => {
