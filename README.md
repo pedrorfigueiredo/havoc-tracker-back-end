@@ -2,11 +2,7 @@
 
 ## Introduction
 
-<<<<<<< HEAD
 Havoc Tracker is a project for helping survivors in a Zombie Apocalypse. The backend is made in Node.js with Express.js. The database is built in MongoDB, with the help of Mongoose lib. This is a RESTful API server.
-=======
-The Resident Zombie is a project for helping survivors in a Zombie Apocalypse. The backend is made in Node.js with Express.js. The database is built in MongoDB, with the help of Mongoose lib. This is a RESTful API server.
->>>>>>> 9d0bbdd96d0246a3fe18bb3eaf42da3c6d1469ca
 
 ## Install
 
